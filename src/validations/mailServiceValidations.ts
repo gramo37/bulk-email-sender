@@ -9,7 +9,7 @@ const contentDataSchema = Joi.object({
 
 const emailSchema = Joi.object({
     to: Joi.string().email().required(),
-    subject: Joi.string().min(1).required(),
+    // subject: Joi.string().min(1).required(),
     contentData: contentDataSchema.required(),
 });
 
@@ -26,7 +26,7 @@ export interface IContentData {
 
 export interface IEmailData {
     to: string;
-    subject: string;
+    // subject: string;
     contentData: IContentData;
 }
 

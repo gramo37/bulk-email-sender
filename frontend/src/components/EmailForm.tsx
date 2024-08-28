@@ -8,7 +8,6 @@ import axiosInstance from "../api.helper";
 
 interface EmailData {
   to: string;
-  subject: string;
   contentData: {
     initial_name: string;
     company_name: string;
@@ -26,7 +25,6 @@ const EmailForm: React.FC = () => {
   const [emailDataList, setEmailDataList] = useState<EmailData[]>([
     {
       to: '',
-      subject: '',
       contentData: {
         initial_name: '',
         company_name: '',
@@ -46,7 +44,6 @@ const EmailForm: React.FC = () => {
       setEmailDataList([
         {
           to: '',
-          subject: '',
           contentData: {
             initial_name: '',
             company_name: '',
@@ -81,7 +78,6 @@ const EmailForm: React.FC = () => {
   const addNewEmailData = () => {
     setEmailDataList([...emailDataList, {
       to: '',
-      subject: '',
       contentData: {
         initial_name: '',
         company_name: '',
@@ -100,6 +96,7 @@ const EmailForm: React.FC = () => {
     <div className="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md">
       <h1 className="text-2xl font-bold mb-4">Send Emails</h1>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <div className="max-h-[70vh] overflow-auto">
         {emailDataList.map((emailData, index) => (
           <div key={index} className="space-y-2 border-b pb-4">
             <input
@@ -107,13 +104,6 @@ const EmailForm: React.FC = () => {
               value={emailData.to}
               onChange={(e) => handleInputChange(index, 'to', e.target.value)}
               placeholder="Recipient Email"
-              className="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-            />
-            <input
-              type="text"
-              value={emailData.subject}
-              onChange={(e) => handleInputChange(index, 'subject', e.target.value)}
-              placeholder="Subject"
               className="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
             />
             <input
@@ -147,12 +137,13 @@ const EmailForm: React.FC = () => {
             <button
               type="button"
               onClick={() => deleteEmailData(index)}
-              className="inline-flex items-center px-4 py-2 bg-red-600 border border-transparent rounded-md shadow-sm text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+              className="inline-flex items-center px-4 py-2 bg-red-600 border border-transparent rounded-md shadow-sm text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 ml-1"
             >
               Delete
             </button>
           </div>
         ))}
+        </div>
         <button
           type="button"
           onClick={addNewEmailData}

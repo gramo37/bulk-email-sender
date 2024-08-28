@@ -6,7 +6,8 @@ export const template = ({
     source,
     initial_name
 }: IContentData) => {
-    return `
+    return {
+        html: `
         <!DOCTYPE html>
             <html>
             <head>
@@ -27,5 +28,7 @@ export const template = ({
                 <span>7875594848</span><br />
             </body>
             </html>
-    `
+    `,
+    subject: `Application for ${role} - Prasanna Gramopadhye`
+    }
 }
